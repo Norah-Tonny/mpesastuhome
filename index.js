@@ -1,7 +1,8 @@
 const express=require("express");
 const app=express();
 const dotenv=require("dotenv")
-const mongoose=require("mongoose")
+const mongoose = require("mongoose")
+const cors=require("cors")
 const port=process.env.PORT||5000
 const mpesaRoutes=require("./routes/mpesa")
 dotenv.config()
@@ -15,7 +16,14 @@ mongoose.connect(process.env.MONG0_URL)
     console.log(err)
 })
 
+const corsOption = {
+    origin:"*"
+}
 app.use(express.json())
-app.use("/api",mpesaRoutes);
+app.use("/api", mpesaRoutes);
+
+app.use(cors(corsOption))
+
+
 
 

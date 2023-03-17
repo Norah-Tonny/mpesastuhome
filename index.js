@@ -2,20 +2,20 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv")
 const mongoose = require("mongoose")
-// const cors = require("cors")
+const cors = require("cors")
 const port = process.env.PORT || 5000
 const mpesaRoutes = require("./routes/mpesa")
 dotenv.config()
-// const corsOption = {
+const corsOption = {
 
 
-//     "origin": "*",
-//     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     "preflightContinue": false,
-//     "optionsSuccessStatus": 204
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
 
-// }
-// app.use(cors(corsOption))
+}
+app.use(cors(corsOption))
 mongoose.connect(process.env.MONG0_URL)
     .then(() => {
         app.listen(port, () => {
